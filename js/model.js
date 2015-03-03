@@ -13,8 +13,8 @@ function createBall()
     return {
         x  : 150,
         y  : 500,
-        vx : 2.5,
-        vy : -2.0,
+        vx : 6.5,
+        vy : -6.0,
         r  : 12
     };
 }

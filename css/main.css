@@ -27,11 +27,6 @@
     background: -ms-radial-gradient(center, ellipse cover,  #b4ddb4 0%,#83c783 8%,#52b152 19%,#008a00 49%,#005700 75%,#002400 100%); /* IE10+ */
     background: radial-gradient(ellipse at center,  #b4ddb4 0%,#83c783 8%,#52b152 19%,#008a00 49%,#005700 75%,#002400 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b4ddb4', endColorstr='#002400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-    -webkit-border: 5px double silver;
-    -moz-border: 5px double silver;
-    -ms-border: 5px double silver;
-    -o-border: 5px double silver;
-    border: 5px double silver;
     position: absolute;
     top: 550px;
     left: 0;

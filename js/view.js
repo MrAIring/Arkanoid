@@ -36,8 +36,8 @@ function drawBall()
     var style = htmlElements.ball.style;
     var ball = model.ball;
 
-    style.left  = ball.x - ball.r / 2 + 'px';
-    style.top   = ball.y - ball.r / 2 + 'px';
+    style.left  = ball.x - ball.r + 'px';
+    style.top   = ball.y - ball.r + 'px';
 }
 
 function drawBlock(blockNumber, left, top, width, height, display) {
@@ -47,13 +47,15 @@ function drawBlock(blockNumber, left, top, width, height, display) {
     style.width = width + 'px';
     style.height = height + 'px';
     style.display = display;
+    if (!display)
+        style.display = 'hidden';
 }
 
 function drawBlocks()
 {
     var blocksPositions =  model.blocks.positions;
     for (var i = 0; i < blocksPositions.length; i++) {
-        drawBlock(i, blocksPositions[i].left, blocksPositions[i].top, model.blocks.blockWidth, model.blocks.blockHeight, model.blocks.display)
+        drawBlock(i, blocksPositions[i].left, blocksPositions[i].top, model.blocks.blockWidth, model.blocks.blockHeight, model.blocks.isBlockHere[i])
     }
 }
 

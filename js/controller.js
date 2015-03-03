@@ -56,7 +56,7 @@ function updateBall()
     ballMod.x += ballMod.vx;
     ballMod.y += ballMod.vy;
 
-    if ( model.ball.x <= 0 )                        { ballMod.vx = -ballMod.vx;  }
+    if ( model.ball.x <= 0 + ballMod.r)                        { ballMod.vx = -ballMod.vx;  }
     if ( model.ball.x >= 1000 - (ballMod.r))   { ballMod.vx = -ballMod.vx;  }
     if ( model.ball.y <= 0 )                        { ballMod.vy = -ballMod.vy;  }
 
@@ -73,18 +73,24 @@ function processBlocksColl(){
         var block = blockMass[i];
         var blockRight = block.left + blocksMod.blockWidth;
         var blockBottom = block.top + blocksMod.blockHeight;
+        var blockChecking = model.blocks.isBlockHere[i];
         var isLeftWallCollision = isWallCollision(block.left, block.top, block.left, blockBottom, ballMod);
         var  isRightWallCollision = isWallCollision(blockRight, block.top, blockRight, blockBottom, ballMod);
 
-        if (isLeftWallCollision || isRightWallCollision)
+        if (blockChecking)
         {
-            ballMod.vx = -ballMod.vx;
-        }
+            if (isLeftWallCollision || isRightWallCollision)
+            {
+                ballMod.vx = -ballMod.vx;
+                blockChecking = false;
+            }
 
-        if(isWallCollision(block.left, block.top, blockRight, block.top,ballMod)||
-            isWallCollision(block.left, blockBottom, blockRight,blockBottom, ballMod))
-        {
-            ballMod.vy = -ballMod.vy;
+            if(isWallCollision(block.left, block.top, blockRight, block.top,ballMod)||
+                isWallCollision(block.left, blockBottom, blockRight,blockBottom, ballMod))
+            {
+                ballMod.vy = -ballMod.vy;
+                blockChecking = false;
+            }
         }
     }
 }
