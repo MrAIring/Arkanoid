@@ -7,7 +7,7 @@
     width: 1000px;
     height: 650px;
     border: 1px solid #000;
-    background: aliceblue;
+    background: url("../img/field.jpg");
     position: relative;
     overflow: hidden;
 }
@@ -60,7 +60,7 @@
     top: 0;
     width: 50px;
     height: 30px;
-    background: darkslategray;
+    background: url("../img/Bricks-1.png");
     text-align: center;
     display: block;
 }
