@@ -46,9 +46,10 @@ function drawBlock(blockNumber, left, top, width, height, display) {
     style.top = top + 'px';
     style.width = width + 'px';
     style.height = height + 'px';
-    style.display = display;
     if (!display)
-        style.display = 'hidden';
+        style.display = 'none';
+    else
+        style.display = 'block';
 }
 
 function drawBlocks()

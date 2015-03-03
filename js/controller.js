@@ -77,21 +77,20 @@ function processBlocksColl(){
         var isLeftWallCollision = isWallCollision(block.left, block.top, block.left, blockBottom, ballMod);
         var  isRightWallCollision = isWallCollision(blockRight, block.top, blockRight, blockBottom, ballMod);
 
-        if (blockChecking)
-        {
+       if (blockChecking){
             if (isLeftWallCollision || isRightWallCollision)
             {
                 ballMod.vx = -ballMod.vx;
-                blockChecking = false;
+                model.blocks.isBlockHere[i] = false;
             }
 
             if(isWallCollision(block.left, block.top, blockRight, block.top,ballMod)||
                 isWallCollision(block.left, blockBottom, blockRight,blockBottom, ballMod))
             {
                 ballMod.vy = -ballMod.vy;
-                blockChecking = false;
+                model.blocks.isBlockHere[i] = false;
             }
-        }
+       }
     }
 }
 
