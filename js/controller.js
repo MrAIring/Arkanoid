@@ -4,7 +4,7 @@
 
 function startController()
 {
-    setInterval( gameStep, 17);
+    var int = setInterval( gameStep, 17);
 }
 
 function movePlatformRight()
@@ -68,32 +68,31 @@ function processBlocksColl(){
     var ballMod = model.ball;
     var blockMass = model.blocks.positions;
     var blocksMod = model.blocks;
-    var blockThere = model.blocks.isBlockHere[i];
-    if(blockThere){
+
+    for (var i = 0; i < 12; i++) {
+        var block = blockMass[i];
+        var blockRight = block.left + blocksMod.blockWidth;
+        var blockBottom = block.top + blocksMod.blockHeight;
+        var isLeftWallCollision = isWallCollision(block.left, block.top, block.left, blockBottom, ballMod);
+        var  isRightWallCollision = isWallCollision(blockRight, block.top, blockRight, blockBottom, ballMod);
+
+        if (isLeftWallCollision || isRightWallCollision)
         {
-            for (var i = 0; i < 12; i++) {
-                var block = blockMass[i];
-                var blockRight = block.left + blocksMod.blockWidth;
-                var blockBottom = block.top + blocksMod.blockHeight;
-                var isLeftWallCollision = isWallCollision(block.left, block.top, block.left, blockBottom, ballMod);
-                var isRightWallCollision = isWallCollision(blockRight, block.top, blockRight, blockBottom, ballMod);
-                var isTopWallCollision =  isWallCollision(block.left, block.top, blockRight, block.top,ballMod);
-                var isBottomWallCollision = isWallCollision(block.left, blockBottom, blockRight,blockBottom, ballMod);
+            ballMod.vx = -ballMod.vx;
+        }
 
-                if (isLeftWallCollision || isRightWallCollision)
-                {
-                    ballMod.vx = -ballMod.vx;
-                }
-
-                if(isTopWallCollision ||isBottomWallCollision)
-                {
-                    ballMod.vy = -ballMod.vy;
-                }
-            }
+        if(isWallCollision(block.left, block.top, blockRight, block.top,ballMod)||
+            isWallCollision(block.left, blockBottom, blockRight,blockBottom, ballMod))
+        {
+            ballMod.vy = -ballMod.vy;
         }
     }
 }
 
+function blockCracked()
+{
+
+}
 
 function processPlatformColl(){
 
@@ -133,16 +132,16 @@ function isWallCollision(x1,y1,x2,y2,ballMod){
         var bottom = Math.max(y1,y2);
         var x = x2;
         return  ballMod.y >= top &&
-                ballMod.y <= bottom &&
-                Math.abs(ballMod.x - x) <= ballMod.r
+            ballMod.y <= bottom &&
+            Math.abs(ballMod.x - x) <= ballMod.r
     }
     else {
         var left = Math.min(x1,x2);
         var right = Math.max(x1,x2);
         var y = y2;
         return  ballMod.x >= left &&
-                ballMod.x <= right &&
-                Math.abs(ballMod.y - y) <= ballMod.r
+            ballMod.x <= right &&
+            Math.abs(ballMod.y - y) <= ballMod.r
     }
 }
 

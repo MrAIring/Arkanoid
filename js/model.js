@@ -41,7 +41,7 @@ function createBlocks()
         blockWidth : 200,
         blockHeight: 25,
         positions  : new Array(12),
-        isBlockHere : [true, true, true, true, true, true, true, true, true, true, true, true]
+        isBlockHere : new Array(12)
     };
 
     for(var row = 0; row < 3; row++)
@@ -51,6 +51,7 @@ function createBlocks()
             var blockLeft = col * 267;
             var blockTop = row * 50;
             res.positions[row * 4 + col] = createBlockPosition(blockLeft, blockTop);
+            res.isBlockHere[row * 4 + col] = true;
         }
     }
 
