@@ -2,9 +2,11 @@
  * Created by Vadim on 26.02.15.
  */
 
+var timerId;
+
 function startController()
 {
-    return setInterval( gameStep, 17);
+    timerId = setInterval( gameStep, 17);
 }
 
 function movePlatformRight()
@@ -67,8 +69,6 @@ function updateBall()
     processBlocksColl();
     processPlatformColl();
 }
-
-var timerId = startController();
 
 function gameOver()
 {
