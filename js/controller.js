@@ -4,7 +4,7 @@
 
 function startController()
 {
-    var int = setInterval( gameStep, 17);
+    return setInterval( gameStep, 17);
 }
 
 function movePlatformRight()
@@ -56,12 +56,23 @@ function updateBall()
     ballMod.x += ballMod.vx;
     ballMod.y += ballMod.vy;
 
-    if ( model.ball.x <= 0 + ballMod.r)                        { ballMod.vx = -ballMod.vx;  }
+    if ( model.ball.x <= 0 + ballMod.r)        { ballMod.vx = -ballMod.vx;  }
     if ( model.ball.x >= 1000 - (ballMod.r))   { ballMod.vx = -ballMod.vx;  }
-    if ( model.ball.y <= 0 )                        { ballMod.vy = -ballMod.vy;  }
+    if ( model.ball.y <= 0 + ballMod.r)        { ballMod.vy = -ballMod.vy;  }
+    if ( model.ball.y > 1000 + model.ball.r)
+    {
+        gameOver();
+    }
 
     processBlocksColl();
     processPlatformColl();
+}
+
+var timerId = startController();
+
+function gameOver()
+{
+    clearInterval(timerId);
 }
 
 function processBlocksColl(){
@@ -92,11 +103,6 @@ function processBlocksColl(){
             }
        }
     }
-}
-
-function blockCracked()
-{
-
 }
 
 function processPlatformColl(){
@@ -149,8 +155,6 @@ function isWallCollision(x1,y1,x2,y2,ballMod){
             Math.abs(ballMod.y - y) <= ballMod.r
     }
 }
-
-
 
 function updatePlatform()
 {
